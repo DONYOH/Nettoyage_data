@@ -1,17 +1,17 @@
 import pandas as pd
 import os
 
-# === Chemin du fichier source ===
+# lien vers le fichier
 fichier_source = "Lien vers le fichier"
 
-# === Entrées utilisateur ===
+# Valeur a supprimer
 colonne_cible = input("Entrez le nom de la colonne à nettoyer (sensible à la casse) : ").strip()
 valeur_a_supprimer = input("Entrez la valeur ou le mot-clé à supprimer : ").strip()
 
-# === Chargement du fichier ===
+# Importation du dataset
 df = pd.read_excel(fichier_source)
 
-# Vérifier si la colonne existe
+# Je vérifie si la colonne existe
 if colonne_cible not in df.columns:
     print(f"❌ La colonne '{colonne_cible}' n'existe pas dans le fichier.")
     print("Colonnes disponibles :", list(df.columns))
@@ -24,7 +24,7 @@ else:
     nom_fichier_source = os.path.splitext(os.path.basename(fichier_source))[0]
     fichier_sortie = os.path.join(repertoire_source, f"{nom_fichier_source}_nettoye.xlsx")
 
-    # Sauvegarde du fichier nettoyé
+    # Générer un fichier au finish
     df.to_excel(fichier_sortie, index=False)
 
     print(f"✅ Fichier nettoyé enregistré avec succès : {fichier_sortie}")
